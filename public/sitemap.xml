@@ -3,19 +3,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
-    <loc>https://focustime-website.vercel.app/</loc>
-  </url>
-
-  <url>
-    <loc>https://focustime-website.vercel.app/privacy</loc>
-  </url>
-
-  <url>
-    <loc>https://focustime-website.vercel.app/terms</loc>
-  </url>
-
-  <url>
-    <loc>https://focustime-website.vercel.app/support</loc>
+    <loc>https://react-focus-time-website.vercel.app/</loc>
   </url>
 
 </urlset>
