@@ -6,4 +6,16 @@
     <loc>https://react-focus-time-website.vercel.app/</loc>
   </url>
 
+  <url>
+    <loc>https://react-focus-time-website.vercel.app/privacy</loc>
+  </url>
+
+  <url>
+    <loc>https://react-focus-time-website.vercel.app/terms</loc>
+  </url>
+
+  <url>
+    <loc>https://react-focus-time-website.vercel.app/support</loc>
+  </url>
+
 </urlset>

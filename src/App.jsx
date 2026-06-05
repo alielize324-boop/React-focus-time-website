@@ -1,7 +1,46 @@
 import React from "react"
 import "./App.css"
 
+const lastUpdated = "2026年6月5日"
+
+const legalPages = {
+  "/privacy": {
+    title: "プライバシーポリシー",
+    placeholder: "正式版本文を後で差し込みます。",
+  },
+  "/terms": {
+    title: "利用規約",
+    placeholder: "正式版本文を後で差し込みます。",
+  },
+}
+
+const supportFaqs = [
+  {
+    question: "FocusTimeはいつ公開されますか？",
+    answer: "現在、App Store公開に向けて準備中です。",
+  },
+  {
+    question: "Android版はありますか？",
+    answer: "現時点ではiPhone向けを想定しています。",
+  },
+  {
+    question: "アカウント登録は必要ですか？",
+    answer: "現時点では不要な設計です。",
+  },
+]
+
 export default function App() {
+  const pathname = window.location.pathname
+  const page = legalPages[pathname]
+
+  if (page) {
+    return <LegalPage page={page} />
+  }
+
+  if (pathname === "/support") {
+    return <SupportPage />
+  }
+
   return (
     <div className="ft-root">
       <header className="ft-header">
@@ -9,7 +48,7 @@ export default function App() {
           <div className="ft-brand-mark">FT</div>
           <span>FocusTime</span>
         </div>
-        <a className="ft-header-link" href="#cta">アプリをダウンロード</a>
+        <a className="ft-header-link" href="#cta">公開予定を見る</a>
       </header>
 
       <main className="ft-main">
@@ -22,7 +61,7 @@ export default function App() {
             </p>
 
             <div className="ft-hero-actions">
-              <a className="ft-button" href="#cta">無料で始める</a>
+              <a className="ft-button" href="#cta">公開予定を見る</a>
               <a className="ft-link-button" href="#features">機能を見る</a>
             </div>
 
@@ -31,14 +70,7 @@ export default function App() {
                 <span className="ft-pill-badge"></span>
                 <div>
                   <p className="ft-pill-label">App Store</p>
-                  <p className="ft-pill-note">近日公開</p>
-                </div>
-              </div>
-              <div className="ft-store-pill">
-                <span className="ft-pill-badge">▶︎</span>
-                <div>
-                  <p className="ft-pill-label">Google Play</p>
-                  <p className="ft-pill-note">Android対応予定</p>
+                  <p className="ft-pill-note">公開予定</p>
                 </div>
               </div>
             </div>
@@ -74,9 +106,9 @@ export default function App() {
                     <span>集中モード</span>
                     <strong>有効</strong>
                   </div>
-                  <div className="ft-phone-list-item">
-                    <span>通知制御</span>
-                    <strong>ON</strong>
+                <div className="ft-phone-list-item">
+                    <span>記録</span>
+                    <strong>端末内</strong>
                   </div>
                 </div>
               </div>
@@ -172,7 +204,7 @@ export default function App() {
             </article>
             <article className="ft-faq-card">
               <h3>継続のサポートはありますか？</h3>
-              <p>目標に応じて振り返りやリマインドを用意し、習慣化を促します。</p>
+              <p>集中時間を記録し、日々の振り返りに使える体験を目指しています。</p>
             </article>
           </div>
         </section>
@@ -184,15 +216,97 @@ export default function App() {
             <p className="ft-eyebrow">今すぐ始める</p>
             <h2>集中のリズムを、今日からシンプルに。</h2>
             <p className="ft-cta-copy">
-              FocusTime は、すっきりとしたUIで集中体験を支えます。まずは画面を触って、習慣を育ててみてください。
+              FocusTime は、すっきりとしたUIで集中体験を支えます。現在、App Storeで公開予定です。
             </p>
           </div>
           <div className="ft-cta-actions">
-            <a className="ft-button ft-button-large" href="#">無料で始める</a>
-            <span>iOS / Android 対応</span>
+            <a className="ft-button ft-button-large" href="#cta">近日公開</a>
+            <span>iPhone向けに準備中</span>
           </div>
         </div>
       </section>
+      <SiteFooter />
     </div>
+  )
+}
+
+function LegalPage({ page }) {
+  return (
+    <div className="ft-root">
+      <SimpleHeader />
+      <main className="ft-page">
+        <p className="ft-eyebrow">FocusTime</p>
+        <h1>{page.title}</h1>
+        <div className="ft-page-content">
+          <section className="ft-page-section">
+            <h2>本文</h2>
+            <p>{page.placeholder}</p>
+          </section>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
+
+function SupportPage() {
+  return (
+    <div className="ft-root">
+      <SimpleHeader />
+      <main className="ft-page">
+        <p className="ft-eyebrow">FocusTime</p>
+        <h1>サポート</h1>
+        <div className="ft-page-content">
+          <section className="ft-page-section">
+            <h2>お問い合わせについて</h2>
+            <p>
+              FocusTimeに関するお問い合わせページです。App Store公開前のため、サポート窓口は準備中です。
+            </p>
+          </section>
+          <section className="ft-page-section">
+            <h2>公開予定</h2>
+            <p>FocusTimeは近日公開予定です。現在、App Store公開に向けて準備を進めています。</p>
+          </section>
+          <section className="ft-page-section">
+            <h2>よくある質問</h2>
+            <div className="ft-support-faqs">
+              {supportFaqs.map((faq) => (
+                <article className="ft-support-faq" key={faq.question}>
+                  <h3>Q. {faq.question}</h3>
+                  <p>A. {faq.answer}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+          <p className="ft-updated">最終更新日: {lastUpdated}</p>
+        </div>
+      </main>
+      <SiteFooter />
+    </div>
+  )
+}
+
+function SimpleHeader() {
+  return (
+    <header className="ft-header">
+      <a className="ft-brand ft-brand-link" href="/">
+        <div className="ft-brand-mark">FT</div>
+        <span>FocusTime</span>
+      </a>
+      <a className="ft-header-link" href="/">トップへ戻る</a>
+    </header>
+  )
+}
+
+function SiteFooter() {
+  return (
+    <footer className="ft-footer">
+      <div className="ft-footer-brand">FocusTime</div>
+      <nav className="ft-footer-links" aria-label="フッターリンク">
+        <a href="/privacy">プライバシーポリシー</a>
+        <a href="/terms">利用規約</a>
+        <a href="/support">サポート</a>
+      </nav>
+    </footer>
   )
 }
